@@ -1,8 +1,8 @@
 Package: objtools
-Version: 2.22
-Revision: 4
+Version: 2.38
+Revision: 1
 Essential: true
-Replaces: binutils (<< 2.22)
+Replaces: binutils (<< 2.38)
 
 Maintainer: Sjors Gielen <fink-objtools@sjorsgielen.nl>
 License: GPL
@@ -10,13 +10,9 @@ DocFiles: COPYING README
 Description: Binutils tools objcopy, objdump and readelf
 
 Source: mirror:gnu:binutils/binutils-%v.tar.bz2
-Source-MD5: ee0f10756c84979622b992a4a61ea3f5
-PatchFile: objtools.patch
-PatchFile-MD5: 46c7844a1fe9dfc5148615d5db251140
-
-ConfigureParams: <<
-	--disable-werror
-<<
+Source-MD5: 16b418651aafd9aa9d661f76b339cfa2
+#PatchFile: objtools.patch
+#PatchFile-MD5: 46c7844a1fe9dfc5148615d5db251140
 
 CompileScript: <<
 #!/bin/sh -ev
@@ -31,6 +27,9 @@ CompileScript: <<
   cd ../opcodes
   ./configure %c
   make libopcodes.la
+  cd ../libctf
+  ./configure %c
+  make libctf.la libctf-nobfd.la
   cd ../binutils
   ./configure %c
   make objcopy
