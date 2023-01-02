@@ -5805,11 +5805,21 @@ sub get_perl_dir_arch {
 			} elsif ((&version_cmp($perlversion, '=', "5.30.2")) and Fink::Services::get_kernel_vers() == '20') {
 				# 11.3 system-perl is 5.30.2, but the only supplied
 				# interpreter is /usr/bin/perl5.30 (not perl5.30.2)
-				$perlcmd = "/usr/bin/arch -%m perl5.30";
-			} elsif ((&version_cmp($perlversion, '=', "5.30.3")) and Fink::Services::get_kernel_vers() == '21') {
-				# 12.0 system-perl is 5.30.3, but the only supplied
+				# arch only knows "arm64", not "arm"
+				if ($config->param('Architecture') eq 'arm') {
+					$perlcmd = "/usr/bin/arch -arm64 perl5.30";
+				} else {
+					$perlcmd = "/usr/bin/arch -%m perl5.30";
+				}
+			} elsif ((&version_cmp($perlversion, '=', "5.30.3")) and Fink::Services::get_kernel_vers() ge 21) {
+				# 12.0-13.0 system-perl is 5.30.3, but the only supplied
 				# interpreter is /usr/bin/perl5.30 (not perl5.30.3)
-				$perlcmd = "/usr/bin/arch -%m perl5.30";
+				# arch only knows "arm64", not "arm"
+				if ($config->param('Architecture') eq 'arm') {
+					$perlcmd = "/usr/bin/arch -arm64 perl5.30";
+				} else {
+					$perlcmd = "/usr/bin/arch -%m perl5.30";
+				}
 			}
 		} else {
 			$perlcmd = get_path('perl'.$perlversion);

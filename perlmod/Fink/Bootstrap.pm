@@ -293,12 +293,30 @@ GCC_MSG
 			"of macOS might work with Fink, but there are no " .
 			"guarantees.");
 		$distribution = "13.0";
-	} elsif ($host =~ /^i386-apple-darwin2(\d+)\./) {
+	} elsif ($host =~ /^arm-apple-darwin21\./) {
 		&print_breaking("This system was not released at the time " .
 			"this Fink release was made.  Prerelease versions " .
 			"of macOS might work with Fink, but there are no " .
 			"guarantees.");
-		$distribution = "12." . ($1);
+		$distribution = "12.0";
+	} elsif ($host =~ /^arm-apple-darwin22\./) {
+		&print_breaking("This system was not released at the time " .
+			"this Fink release was made.  Prerelease versions " .
+			"of macOS might work with Fink, but there are no " .
+			"guarantees.");
+		$distribution = "13.0";
+	} elsif ($host =~ /^arm64-apple-darwin21\./) {
+		&print_breaking("This system was not released at the time " .
+			"this Fink release was made.  Prerelease versions " .
+			"of macOS might work with Fink, but there are no " .
+			"guarantees.");
+		$distribution = "12.0";
+        } elsif ($host =~ /^i386-apple-darwin2(\d+)\./) {
+                &print_breaking("This system was not released at the time " .
+                        "this Fink release was made.  Prerelease versions " .
+                        "of macOS might work with Fink, but there are no " .
+                        "guarantees.");
+                $distribution = "12." . ($1);
 	} elsif ($host =~ /^i386-apple-darwin(\d+)\./) {
 		&print_breaking("This system was not released at the time " .
 			"this Fink release was made.  Prerelease versions " .

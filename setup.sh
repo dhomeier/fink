@@ -36,7 +36,11 @@ perlexe="/usr/bin/perl"
 osMajorVer=`uname -r | cut -d. -f1`
 osMinorVer=`uname -r | cut -d. -f2`
 
-if [ $osMajorVer -eq 11 -o $osMajorVer -eq 12 ]; then
+if [ $architecture == "arm" -a $osMajorVer -eq 20 -a $osMinorVer -le 3 ]; then
+  perlexe="/usr/bin/arch -arch arm64 /usr/bin/perl5.28"
+elif [ $architecture == "arm" -a $osMajorVer -ge 21 ]; then
+  perlexe="/usr/bin/arch -arch arm64 /usr/bin/perl5.30"
+elif [ $osMajorVer -eq 11 -o $osMajorVer -eq 12 ]; then
   perlexe="/usr/bin/arch -arch $architecture /usr/bin/perl5.12"
 elif [ $osMajorVer -eq 13 ]; then
   perlexe="/usr/bin/arch -arch $architecture /usr/bin/perl5.16"

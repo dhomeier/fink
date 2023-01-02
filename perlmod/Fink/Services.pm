@@ -1529,6 +1529,7 @@ sub get_darwin_equiv {
 		return $darwin_osx{$kernel_vers} || '11.' . ($kernel_vers_minor-1);
 	} elsif ($kernel_vers == 21) {
 		# darwin21.1 == 12.0
+		# darwin21.6 == 12.5 or 12.6 handled in get_osx_vers()
 		return $darwin_osx{$kernel_vers} || '12.' . ($kernel_vers_minor-1);
 	} elsif ($kernel_vers >= 22) {
 		# darwin22.1 == 13.0
