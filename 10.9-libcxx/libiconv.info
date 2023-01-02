@@ -65,7 +65,8 @@ make install DESTDIR=%b/../_inst
 
 ### now build iconv
 cd %b/../libiconv-%v
-make -f Makefile.devel GPERF=%b/../gperf-3.1/src/gperf
+### failing on 13.x due to missing system groff; proceed with unfinished docs
+make -f Makefile.devel GPERF=%b/../gperf-3.1/src/gperf || echo "Doc build may be incomplete."
 am_cv_func_iconv="yes"
 am_cv_proto_iconv=""
 export am_cv_func_iconv am_cv_proto_iconv
