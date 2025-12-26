@@ -1149,7 +1149,7 @@ sub validate_info_file {
 
 			my $depends = $pv->pkglist_default('depends', '');
 			unless ($depends =~ /(\A|,|\s)($langpkg|.*$modpkg)(-|\z|,|\s|\()/ || $pv->is_obsolete) {
-				print "Error: language-versioned package $name needs Depends on another $modpkg (package of the same language-version) or on $langpkg (the language interpretter itself). ($filename)\n";
+				print "Error: language-versioned package $name needs Depends on another $modpkg (package of the same language-version) or on $langpkg (the language interpreter itself). ($filename)\n";
 				$looks_good = 0;
 			}
 		}
